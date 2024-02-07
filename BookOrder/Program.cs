@@ -76,34 +76,14 @@ namespace BookOrder
                             break;
 
                         case 8:
-                            if (toplam < 400)
-                            {
-                                indirim = 0.95;
-                                Console.WriteLine("Toplam : " + (toplam * indirim) * KDVsizFiyat);
-                                Console.WriteLine("KDV : " + (toplam * indirim) * KDV);
-                                Console.WriteLine("Genel Toplam :" + toplam * indirim);
-                            }
-                            else if (toplam >= 400 && toplam < 1000)
-                            {
-                                indirim = 0.90;
-                                Console.WriteLine("Toplam : " + (toplam * indirim) * KDVsizFiyat);
-                                Console.WriteLine("KDV : " + (toplam * indirim) * KDV);
-                                Console.WriteLine("Genel Toplam :" + toplam * indirim);
-                            }
-                            else if (toplam >= 1000 && toplam < 2000)
-                            {
-                                indirim = 0.85;
-                                Console.WriteLine("Toplam : " + (toplam * indirim) * KDVsizFiyat);
-                                Console.WriteLine("KDV : " + (toplam * indirim) * KDV);
-                                Console.WriteLine("Genel Toplam :" + toplam * indirim);
-                            }
-                            else
-                            {
-                                indirim = 0.75;
-                                Console.WriteLine("Toplam : " + (toplam * indirim) * KDVsizFiyat);
-                                Console.WriteLine("KDV : " + (toplam * indirim) * KDV);
-                                Console.WriteLine("Genel Toplam :" + toplam * indirim);
-                            }
+                            if (toplam < 400) indirim = 0.95;
+                            else if (toplam >= 400 && toplam < 1000) indirim = 0.90;
+                            else if (toplam >= 1000 && toplam < 2000) indirim = 0.85;
+                            else indirim = 0.75;
+
+                            Console.WriteLine("Toplam : " + (toplam * indirim) * KDVsizFiyat);
+                            Console.WriteLine("KDV : " + (toplam * indirim) * KDV);
+                            Console.WriteLine("Genel Toplam :" + toplam * indirim);
                             break;
                     }
                 }
