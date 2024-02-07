@@ -15,7 +15,6 @@
             {
                 Console.Write("1. Sayıyı Giriniz : ");
                 sayi1 = Convert.ToDouble(Console.ReadLine());
-                sayi1 = 0 + sayi1;
             }
             catch (Exception)
             {
