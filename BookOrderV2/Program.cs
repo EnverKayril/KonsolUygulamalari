@@ -8,6 +8,8 @@ namespace BookOrderV2
         {
             List<string> billingInformation = new List<string>();
             double total = 0;
+            int selection = 0;
+            uint piece = 0;
 
             Welcome();
 
@@ -16,7 +18,18 @@ namespace BookOrderV2
             {
                 Console.WriteLine("Lütfen almak istediğiniz ürünü seçiniz. \nÜrünleri görüntülemek için '8'e basınız. \nSiparişi tamamlamak için '9'a basınız.");
 
-                int selection = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    selection = Convert.ToInt32(Console.ReadLine());
+                    
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. ");
+
+                }
+                
 
                 if (selection == 8)
                 {
@@ -35,8 +48,18 @@ namespace BookOrderV2
                     isRun = false;
                     break;
                 }
+
                 Console.Write("Adet giriniz: ");
-                uint piece = Convert.ToUInt32(Console.ReadLine());
+
+                try
+                {
+                    piece = Convert.ToUInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. ");
+                }
+                
 
                 total += AddBill(billingInformation, selection, piece);
             }
