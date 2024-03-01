@@ -18,7 +18,7 @@ namespace BookOrderV2
             {
                 Console.WriteLine("Lütfen almak istediğiniz ürünü seçiniz. \nÜrünleri görüntülemek için '8'e basınız. \nSiparişi tamamlamak için '9'a basınız.");
 
-
+                selection:
                 try
                 {
                     selection = Convert.ToInt32(Console.ReadLine());
@@ -26,8 +26,8 @@ namespace BookOrderV2
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Hatalı değer girdiniz. ");
-
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen seçim yapınız. ");
+                    goto selection;
                 }
                 
 
@@ -36,40 +36,35 @@ namespace BookOrderV2
                     Console.WriteLine(PrintList());
                     continue;
                 }
-
+                
                 if (selection == 9)
                 {
-                    Console.WriteLine("KİTAP ADI        ADET  BİRİM FİYAT   ARA TOPLAM");
+                    Console.WriteLine($"{"KİTAP ADI",-20}{"ADET",8}{"BİRİM FİYATI",18}{"ARA TOPLAM",15}");
                     foreach (string billing in billingInformation)
                     {
                         Console.WriteLine(billing);
                     }
-                    Console.WriteLine("GENEL TOPLAM : " + total);
+                    Console.WriteLine($"\n{"GENEL TOPLAM",46}{total,15}");
                     isRun = false;
                     break;
                 }
 
                 Console.Write("Adet giriniz: ");
-
+                piece:
                 try
                 {
                     piece = Convert.ToUInt32(Console.ReadLine());
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Hatalı değer girdiniz. ");
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen adet giriniz. ");
+                    goto piece;
                 }
                 
 
                 total += AddBill(billingInformation, selection, piece);
             }
 
-
-
-
-
-
-            //Dışarıdan sipariş alınacak olan kitap miktarı girilsin. Sipariş sayısı 20 den az ise toplam ücretten %5 düşürülsün. 20-50 aralığında ise %10. 50-100 aralığında ise %15, 100 den fazla ise %25 indirim yapılsın. Kitabın birim fiyatı 20TL
         }
 
         private static void Welcome()
@@ -84,7 +79,7 @@ namespace BookOrderV2
             double subTotal = SubTotal(piece, selection);
             string bookName = BooksList()[selection - 1];
             double singlePrice = BooksPrice()[selection - 1];
-            string item = (bookName) + " " + (piece) + " " + (singlePrice) + " " + (subTotal);
+            string item = ($"{bookName,-20}{piece,8}{singlePrice,18}{subTotal,15}");
             bill.Add(item);
             return subTotal;
         }
@@ -121,3 +116,4 @@ namespace BookOrderV2
         }
     }
 }
+

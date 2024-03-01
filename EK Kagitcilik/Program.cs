@@ -8,6 +8,10 @@ namespace EK_Kagitcilik
         {
             List<string> faturaDetayı = new List<string>();
             double total = 0;
+            int secim1 = 0;
+            int secim2 = 0;
+            int secim3 = 0;
+            uint adet = 0;
 
             Console.WriteLine("Kağıt Sipariş Sistemi\n");
             
@@ -18,29 +22,67 @@ namespace EK_Kagitcilik
             {
                 Console.WriteLine(Kagıtlar() + "Siparişi tamamlamak için '9'a basınız.");
                 Console.Write("\nKağıt Cinsini Seçiniz: ");
-                int secim1 = Convert.ToInt32(Console.ReadLine());
+                secim1:
+                try
+                {
+                    secim1 = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen kağıt cinsi seçiniz. ");
+                    goto secim1;
+                }
+
                 if (secim1 == 9) 
                 {
-                    Console.WriteLine("KAĞIT CİNSİ \t  M2 FİYATI\tKAĞIT ENİ \t TOP METRAJI \t\t TOPLAM");
+                    Console.WriteLine($"{"KAĞIT CİNSİ",-13}{"m² FİYATI",13}{"KAĞIT ENİ",13}{"TOP METRAJI",16}{"ARA TOPLAM",13}");
                     foreach (string kalem in faturaDetayı)
                     {
                         Console.WriteLine(kalem);
                     }
-                    Console.WriteLine("\n\t\t\t\t\t   GENEL TOPLAM  \t\t" + Math.Round(total));
+                    Console.WriteLine($"\n{"GENEL TOPLAM",55}{total,13}");
                     isRun = false; 
                     break;
                 }
 
                 Console.WriteLine(KagitEnleri());
                 Console.Write("Kağıt Enini Seçiniz: ");
-                int secim2 = Convert.ToInt32(Console.ReadLine());
+                secim2:
+                try
+                {
+                    secim2 = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen kağıt eni seçiniz. ");
+                    goto secim2;
+                }
 
                 Console.WriteLine(TopMetrajlari());
                 Console.Write("Top Metrajını Seçiniz: ");
-                int secim3 = Convert.ToInt32(Console.ReadLine());
+                secim3:
+                try
+                {
+                    secim3 = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen top metrajı seçiniz. ");
+                    goto secim3;
+                }
+                
 
                 Console.Write("Adet Giriniz: ");
-                uint adet = Convert.ToUInt32(Console.ReadLine());
+                adet:
+                try
+                {
+                    adet = Convert.ToUInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Hatalı değer girdiniz. Lütfen top metrajı seçiniz. ");
+                    goto adet;
+                }
 
                 total += Fatura(faturaDetayı, secim1, secim2, secim3, adet);
             }
@@ -56,7 +98,7 @@ namespace EK_Kagitcilik
             double kagitEni = KagıtEni()[secim2 - 1];
             double topMetraji = TopMetraji()[secim3 - 1];
             double araToplam = AraToplam(secim1, secim2, secim3, adet);
-            string item = ("\t" + kagitCinsi + "\t\t" + metrekareFiyatı + "\t    " + kagitEni + "\t\t\t" + topMetraji + "\t\t" + araToplam);
+            string item = ($"{kagitCinsi,-13}{metrekareFiyatı,13}{kagitEni,13}{topMetraji,16}{araToplam,13}"); 
             fis.Add(item);
             return Math.Round(araToplam,2);
         }
