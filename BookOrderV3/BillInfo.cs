@@ -8,57 +8,43 @@ namespace BookOrderV3
 {
     public class BillInfo
     {
-        double subTotal;
+        internal static object billList;
 
-        public BillInfo(string BookName, uint Piece, double Price, double Subtotal)
-        {
+        public string BookNo { get; set; }
+        public string BookName { get; set; }
+        public uint Piece { get; set; }
+        public double Price { get; set; }
+        public double SubTotal { get { return Price * Piece; } }
 
-        }
-
-        public BillInfo(int bookNo, string bookName, uint piece, double bookPrice)
+        public BillInfo(string bookNo, string bookName, uint piece, double price)
         {
             BookNo = bookNo;
             BookName = bookName;
             Piece = piece;
-            Price = bookPrice;
+            Price = price;
+
         }
 
-        public int BookNo { get; set; }
-        public string BookName { get; set; }
-        public uint Piece { get; set; }
-        double Price { get; set; }
-        double SubTotal { get { return subTotal; } set { subTotal = Price * Piece; } }
 
-
-        public static List<BillInfo> AddBill(List<Books> x, int selection, uint piece)
+        public static List<BillInfo> AddBill(List<Books> booksList, int selection, uint piece)
         {
-            List<BillInfo> billList = new List<BillInfo>();
-
-            BillInfo item = new BillInfo(x[selection - 1].BookName, piece, x[selection - 1].BookPrice, Subtotal(piece, x[selection - 1].BookPrice));
-            billList.Add(item);
-
-            Console.WriteLine(Subtotal);
-
-            return billList;
-        }
-
-        public static double Subtotal(uint piece, double price)
-        {
-            return price * piece;
-        }
-
-        public static void GetInformation(List<BillInfo> x)
-        {
-            Console.WriteLine($"{"Kitap No",-10}{"Kitap Adı",-20}{"Adet",9}{"Fiyatı",6}{"Ara Toplam",15}");
-            int i = 1;
-            foreach (var book in x)
+            if (selection < 0 || selection > booksList.Count)
             {
-                Console.WriteLine($"{i}{book.BookName.TrimStart(),-20}{book.Piece,9}{book.Price,6}{book.SubTotal}");
+                throw new ArgumentOutOfRangeException(nameof(selection), "Invalid book selection.");
+            }
+
+            var selectedBook = booksList[selection - 1];
+            var billItem = new BillInfo(selectedBook.BookNo.ToString(), selectedBook.BookName, piece, selectedBook.BookPrice);
+            return new List<BillInfo> { billItem };
+        }
+
+        public static void GetInformation(List<BillInfo> billList)
+        {
+            Console.WriteLine($"{"Kitap No",-10}{"Kitap Adı",-20}{"Adet",10}{"Fiyatı",10}{"Ara Toplam",15}");
+            foreach (var billItem in billList)
+            {
+                Console.WriteLine($"{billItem.BookNo,-10}{billItem.BookName.Trim(),-20}{billItem.Piece,10}{billItem.Price,10}{billItem.SubTotal,15}");
             }
         }
-
-
     }
 }
-
-

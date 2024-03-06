@@ -10,18 +10,9 @@ namespace BookOrderV3
 {
     public class Books
     {
-
-        public Books(string BookNo, string BookName, string BookPrice)
-        {
-            this.BookNo = int.Parse(BookNo);
-            this.BookName = BookName;
-            this.BookPrice = double.Parse(BookPrice);
-        }
-
         public int BookNo { get; set; }
         public string BookName { get; set; }
         public double BookPrice { get; set; }
-
 
         public static List<Books> AddBook(string path)
         {
@@ -32,12 +23,16 @@ namespace BookOrderV3
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
-
                     string[] bookInfo = line.Split('-');
 
                     if (bookInfo.Length == 3)
                     {
-                        Books book = new Books(bookInfo[0], bookInfo[1], bookInfo[2]);
+                        Books book = new Books
+                        {
+                            BookNo = int.Parse(bookInfo[0]),
+                            BookName = bookInfo[1],
+                            BookPrice = double.Parse(bookInfo[2])
+                        };
                         bookList.Add(book);
                     }
                     else throw new ArgumentException("Eksik bilgi: " + line);
@@ -55,5 +50,4 @@ namespace BookOrderV3
             }
         }
     }
-
 }
