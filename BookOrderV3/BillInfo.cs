@@ -27,7 +27,7 @@ namespace BookOrderV3
         {
             if (selection < 0 || selection > booksList.Count)
             {
-                throw new ArgumentOutOfRangeException(nameof(selection), "Invalid book selection.");
+                throw new ArgumentOutOfRangeException(nameof(selection), "Geçersiz seçim.");
             }
 
             var selectedBook = booksList[selection - 1];
