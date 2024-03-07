@@ -22,10 +22,7 @@ namespace BookOrderV3
             BookName = bookName;
             Piece = piece;
             Price = price;
-
         }
-
-
         public static List<BillInfo> AddBill(List<Books> booksList, int selection, uint piece)
         {
             if (selection < 0 || selection > booksList.Count)
@@ -44,6 +41,24 @@ namespace BookOrderV3
             foreach (var billItem in billList)
             {
                 Console.WriteLine($"{billItem.BookNo,-10}{billItem.BookName.Trim(),-20}{billItem.Piece,10}{billItem.Price,10}{billItem.SubTotal,15}");
+            }
+        }
+
+        public static void WriteBill(string musteriAdi, List<BillInfo> txt, double total)
+        {
+            string path = @"C:\Users\oscar\OneDrive\Masaüstü\BookOrder\Satışlar\" + musteriAdi;
+
+            Directory.CreateDirectory(path);
+
+            using (StreamWriter sw = new StreamWriter(path + "\\" + DateTime.Now.TimeOfDay + "-"+ musteriAdi+".txt"))
+            {   
+                sw.WriteLine($"{"Kitap No",-10}{"Kitap Adı",-20}{"Adet",10}{"Fiyatı",10}{"Ara Toplam",15}");
+                
+                foreach (var billItem in txt)
+                {
+                    sw.WriteLine($"{billItem.BookNo,-10}{billItem.BookName.Trim(),-20}{billItem.Piece,10}{billItem.Price,10}{billItem.SubTotal,15}");
+                }
+                sw.WriteLine($"\n{"TOPLAM",50}{total,15}");
             }
         }
     }
