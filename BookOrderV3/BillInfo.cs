@@ -50,7 +50,7 @@ namespace BookOrderV3
 
             Directory.CreateDirectory(path);
 
-            using (StreamWriter sw = new StreamWriter(path + "\\" + DateTime.Now.TimeOfDay + "-"+ musteriAdi+".txt"))
+            using (StreamWriter sw = new StreamWriter(path + "\\" + DateTime.Now.Day + "-"+ musteriAdi+".txt"))
             {   
                 sw.WriteLine($"{"Kitap No",-10}{"Kitap Adı",-20}{"Adet",10}{"Fiyatı",10}{"Ara Toplam",15}");
                 
