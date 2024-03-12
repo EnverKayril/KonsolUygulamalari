@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EK Kagitcilik", "EK Kagitci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookOrderV3", "BookOrderV3\BookOrderV3.csproj", "{C7049D1F-E259-4A93-9F88-EF941F138834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookOrderV3.1", "BookOrderV3.1\BookOrderV3.1.csproj", "{A3567B71-D305-4FF5-AFDB-E6B5256CEDD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popcorn", "Popcorn\Popcorn.csproj", "{93F6B0B1-3152-4D20-85E2-110BA26832D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{C7049D1F-E259-4A93-9F88-EF941F138834}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7049D1F-E259-4A93-9F88-EF941F138834}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7049D1F-E259-4A93-9F88-EF941F138834}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3567B71-D305-4FF5-AFDB-E6B5256CEDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3567B71-D305-4FF5-AFDB-E6B5256CEDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3567B71-D305-4FF5-AFDB-E6B5256CEDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3567B71-D305-4FF5-AFDB-E6B5256CEDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F6B0B1-3152-4D20-85E2-110BA26832D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F6B0B1-3152-4D20-85E2-110BA26832D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F6B0B1-3152-4D20-85E2-110BA26832D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F6B0B1-3152-4D20-85E2-110BA26832D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

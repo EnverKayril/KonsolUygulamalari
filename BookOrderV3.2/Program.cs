@@ -1,13 +1,11 @@
-﻿using System.Xml.Schema;
-
-namespace BookOrderV3._1
+﻿namespace BookOrderV3._2
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             string path = @"C:\Users\oscar\OneDrive\Masaüstü\BookOrder\Books.txt";
-            List<Books> bookList =  Books.AddBook(path);
+            List<Books> bookList = Books.AddBooks(path);
             List<Bill> billList = new List<Bill>();
             Bill.GetBook(bookList);
             byte selection = 1;
@@ -16,21 +14,21 @@ namespace BookOrderV3._1
 
             while (true)
             {
-                selection:
+            selection:
                 try
                 {
                     Console.Write("Seçim yapınız: ");
                     selection = byte.Parse(Console.ReadLine());
                     if (selection == 0)
                         break;
-                    else if (selection >= bookList.Count+1)
+                    else if (selection >= bookList.Count + 1)
                         goto selection;
                 }
                 catch
                 {
                     goto selection;
                 }
-                piece:
+            piece:
                 try
                 {
                     Console.Write("Adet giriniz: ");
@@ -40,20 +38,22 @@ namespace BookOrderV3._1
                 {
                     goto piece;
                 }
-                //billList.AddRange(Bill.AddBill(billList,bookList,selection,piece));
-                foreach (Bill item in billList)
-                { total += item.subTotal; }
-                Console.WriteLine($"{"Ara Toplam",50}{total,15}");
+                var newBillItems = Bill.AddBill(billList, bookList, selection, piece);
+
+                billList.AddRange(newBillItems);
+
+                foreach (var billItem in billList)
+                {
+                    total += billItem.subTotal;
+                }
+
             }
-            
             Console.WriteLine($"\n{"TOPLAM",50}{total,15}");
             Console.Write("Firma İsmi Giriniz: ");
             string musteriadi = Console.ReadLine();
             Bill.PrintBill(billList);
             Bill.SaveBill(billList, musteriadi, total);
-
         }
     }
-
-
 }
+
